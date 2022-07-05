@@ -1,3 +1,5 @@
+/* Copyright (c) 2022 YA-androidapp(https://github.com/YA-androidapp) All rights reserved. */
+
 body {
     padding-top: 56px;
 }
@@ -24,4 +26,8 @@ main>* {
 
 .nav-flush .nav-link {
     border-radius: 0;
+}
+
+#sidebar {
+    width: 280px;
 }
