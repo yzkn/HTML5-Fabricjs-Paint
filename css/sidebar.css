@@ -25,3 +25,7 @@ main>* {
 .nav-flush .nav-link {
     border-radius: 0;
 }
+
+#sidebar {
+    width: 280px;
+}
