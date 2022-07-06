@@ -4,5 +4,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     setCanvasSize();
 
     freeDrawing();
+    history();
+    insertTextbox();
     loadImage();
+    saveImage();
+    shortcutKey();
+
+    initializeFontSelection(); // fonts.js
 });

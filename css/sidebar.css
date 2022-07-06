@@ -37,3 +37,7 @@ main>* {
 input[type="range"] {
     width: 60px;
 }
+
+select#textbox-fontname {
+    width: 100px;
+}

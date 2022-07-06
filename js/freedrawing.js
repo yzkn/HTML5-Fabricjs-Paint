@@ -20,19 +20,19 @@ const freeDrawing = () => {
         drawingLineWidthEl = $('drawing-line-width'),
         drawingShadowWidth = $('drawing-shadow-width'),
         drawingShadowOffset = $('drawing-shadow-offset'),
-        clearEl = $('clear-canvas');
-
-    clearEl.onclick = function () { canvas.clear() };
+        clipboardButtonsEl = $('clipboard-buttons');
 
     drawingModeEl.onclick = function () {
         canvas.isDrawingMode = !canvas.isDrawingMode;
         if (canvas.isDrawingMode) {
             drawingModeEl.innerHTML = 'Cancel dr mode';
             drawingOptionsEl.style.display = '';
+            clipboardButtonsEl.style.display = 'none';
         }
         else {
             drawingModeEl.innerHTML = 'Enter dr mode';
             drawingOptionsEl.style.display = 'none';
+            clipboardButtonsEl.style.display = '';
         }
     };
 
@@ -191,19 +191,84 @@ const freeDrawing = () => {
             color: drawingShadowColorEl.value,
         });
     }
+
+    document.getElementById("clipboard-copy").onclick = (e) => {
+        Copy();
+    }
+
+    document.getElementById("clipboard-paste").onclick = (e) => {
+        Paste();
+    }
+
+    document.getElementById("remove").onclick = (e) => {
+        Remove();
+    }
 };
+
+// Remove
+function Remove() {
+    let activeObjects = canvas.getActiveObjects();
+    if (activeObjects) {
+        activeObjects.forEach(obj => {
+            canvas.remove(obj);
+        });
+    }
+}
+
+// Clipboard
+let _clipboard;
+
+function Copy() {
+    let activeObject = canvas.getActiveObject()
+    if (activeObject) {
+        activeObject.clone(function (cloned) {
+            _clipboard = cloned;
+        });
+    }
+}
+
+function Paste() {
+    if (_clipboard) {
+        _clipboard.clone(function (clonedObj) {
+            canvas.discardActiveObject();
+            clonedObj.set({
+                left: clonedObj.left + 10,
+                top: clonedObj.top + 10,
+                evented: true,
+            });
+            if (clonedObj.type === 'activeSelection') {
+                clonedObj.canvas = canvas;
+                clonedObj.forEachObject(function (obj) {
+                    canvas.add(obj);
+                });
+                clonedObj.setCoords();
+            } else {
+                canvas.add(clonedObj);
+            }
+            _clipboard.top += 10;
+            _clipboard.left += 10;
+            canvas.setActiveObject(clonedObj);
+            canvas.requestRenderAll();
+        });
+    }
+}
+
 
 const freeDrawingToolboxContents = `
 <div id="drawing-buttons" class="my-3">
     <button id="drawing-mode" class="btn btn-info">Cancel dr mode</button>
-    <button id="clear-canvas" class="btn btn-info">Clear</button>
+</div>
+<div id="clipboard-buttons" class="my-3" style="display: none;">
+    <button id="clipboard-copy" class="btn btn-info">Copy</button>
+    <button id="clipboard-paste" class="btn btn-info">Paste</button>
+    <button id="remove" class="btn btn-danger">Remove</button>
 </div>
 <div id="drawing-mode-options" class="my-3">
     <div class="container">
         <div class="row my-2">
             <div class="col-3"><label for="drawing-mode-selector">Mode:</label></div>
             <div class="col">
-                <select id="drawing-mode-selector">
+                <select id="drawing-mode-selector"class="form-select form-select-sm">
                     <option>Pencil</option>
                     <option>Circle</option>
                     <option>Spray</option>

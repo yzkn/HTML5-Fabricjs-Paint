@@ -49,7 +49,7 @@
         </div>
     </nav>
 
-    <main class="h-100">
+    <main class="h-100" id="main">
         <div class="d-flex flex-column p-3 text-white bg-dark h-100" id="sidebar">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -78,17 +78,21 @@
                                 <div class="col-2">
                                     Load
                                 </div>
-                                <div class="col-10">
-                                    <div id="load-image-toolbox"></div>
-                                </div>
+                                <div class="col-10" id="load-image-toolbox"></div>
                             </div>
                             <div class="row my-2">
                                 <div class="col-2">
                                     Save
                                 </div>
-                                <div class="col-10">
-                                    <div id="save-image-toolbox"></div>
+                                <div class="col-10" id="save-image-toolbox"></div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-2">
+                                    History
                                 </div>
+                                <div class="col-10" id="history-toolbox"></div>
+                            </div>
+                            <div class="row my-2" id="insert-textbox-toolbox">
                             </div>
                         </div>
                     </div>
@@ -118,12 +122,20 @@
 
     <script src="js/canvas.js"></script>
     <script src="js/fabric.min.js"></script>
+    <script src="js/fabric-history.js"></script>
+    <script src="js/fonts.js"></script>
     <script src="js/freedrawing.js"></script>
-    <script src="js/init.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/insertTextbox.js"></script>
+    <script src="js/is-installed-font.js"></script>
     <script src="js/loadImage.js"></script>
     <script src="js/loadPDF.js"></script>
     <script src="js/pdf.min.js"></script>
+    <script src="js/saveImage.js"></script>
+    <script src="js/shortcutKey.js"></script>
     <script src="js/sidebar.js"></script>
+
+    <script src="js/init.js"></script>
 </body>
 
 </html><!-- Copyright (c) 2022 YA-androidapp(https://github.com/YA-androidapp) All rights reserved. -->
