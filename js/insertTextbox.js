@@ -35,9 +35,9 @@ const insertTextboxToolboxContents = `
     Text
 </div>
 <div class="col-4">
-    <button id="insert-textbox" class="btn btn-info">Insert</button>
+    <button id="insert-textbox" class="btn btn-success">Insert</button>
 </div>
-<div class="col-6">
+<div class="col-6 d-flex align-items-center">
     <select class="form-select form-select-sm" aria-label="Font name"
         id="textbox-fontname" name="textbox-fontname" title="Font name">
         <option selected></option>

@@ -46,7 +46,7 @@ const loadImage = () => {
         const w = c.getAttribute("width");
         const h = c.getAttribute("height");
 
-        const grid = 10;
+        const grid = 50;
 
         for (var i = 0; i < (w / grid); i++) {
             canvas.add(new fabric.Line([i * grid, 0, i * grid, h], { type: 'line', stroke: '#ccc', selectable: false }));
@@ -95,7 +95,7 @@ const loadImageToolboxContents = `
 
 <label>
     <span class="btn btn-info">
-        Local files
+        Open
         <input type="file" id="uploader" style="display:none" multiple>
     </span>
 </label>

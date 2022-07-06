@@ -22,8 +22,8 @@ function Undo() {
 
 
 const historyToolboxContents = `
-<button id="history-undo" class="btn btn-info">Undo</button>
-<button id="history-redo" class="btn btn-info">Redo</button>
+<button id="history-undo" class="btn btn-secondary">Undo</button>
+<button id="history-redo" class="btn btn-secondary">Redo</button>
 `
 
 const historyToolbox = () => {

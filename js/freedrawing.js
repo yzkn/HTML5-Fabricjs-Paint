@@ -168,16 +168,16 @@ const freeDrawing = () => {
     };
     drawingLineWidthEl.onchange = function () {
         canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
-        this.previousSibling.innerHTML = this.value;
+        $('drawing-line-width-info').innerHTML = this.value;
     };
     drawingShadowWidth.onchange = function () {
         canvas.freeDrawingBrush.shadow.blur = parseInt(this.value, 10) || 0;
-        this.previousSibling.innerHTML = this.value;
+        $('drawing-shadow-width-info').innerHTML = this.value;
     };
     drawingShadowOffset.onchange = function () {
         canvas.freeDrawingBrush.shadow.offsetX = parseInt(this.value, 10) || 0;
         canvas.freeDrawingBrush.shadow.offsetY = parseInt(this.value, 10) || 0;
-        this.previousSibling.innerHTML = this.value;
+        $('drawing-shadow-offset-info').innerHTML = this.value;
     };
 
     if (canvas.freeDrawingBrush) {
@@ -256,12 +256,31 @@ function Paste() {
 
 const freeDrawingToolboxContents = `
 <div id="drawing-buttons" class="my-3">
-    <button id="drawing-mode" class="btn btn-info">Cancel dr mode</button>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-2">Mode</div>
+            <div class="col">
+                <button id="drawing-mode" class="btn btn-info">Cancel dr mode</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="clipboard-buttons" class="my-3" style="display: none;">
-    <button id="clipboard-copy" class="btn btn-info">Copy</button>
-    <button id="clipboard-paste" class="btn btn-info">Paste</button>
-    <button id="remove" class="btn btn-danger">Remove</button>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-2">Parts</div>
+            <div class="col">
+                <button id="clipboard-copy" class="btn btn-info">Copy</button>
+                <button id="clipboard-paste" class="btn btn-info">Paste</button>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-2"></div>
+            <div class="col">
+                <button id="remove" class="btn btn-danger">Remove</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="drawing-mode-options" class="my-3">
     <div class="container">
@@ -290,7 +309,7 @@ const freeDrawingToolboxContents = `
                 <input type="range" value="4" min="0" max="150" id="drawing-line-width"">
             </div>
             <div class="col">
-                <span class="info">4</span>
+                <span id="drawing-line-width-info">4</span>
             </div>
         </div>
         <div class="row my-2">
@@ -319,7 +338,7 @@ const freeDrawingToolboxContents = `
             <div class="col">
                 <input type="range" value="0" min="0" max="50" id="drawing-shadow-width"">
             </div>
-            <div class="col"><span class="info">0</span></div>
+            <div class="col"><span id="drawing-shadow-width-info">0</span></div>
         </div>
         <div class="row my-2">
             <div class="col-3"></div>
@@ -327,7 +346,7 @@ const freeDrawingToolboxContents = `
             <div class="col">
                 <input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"">
             </div>
-            <div class="col"><span class="info">0</span></div>
+            <div class="col"><span id="drawing-shadow-offset-info">0</span></div>
         </div>
     </div>
 </div>
