@@ -29,5 +29,11 @@ main>* {
 }
 
 #sidebar {
-    width: 280px;
+    width: 320px;
+
+    font-size: smaller;
+}
+
+input[type="range"] {
+    width: 60px;
 }

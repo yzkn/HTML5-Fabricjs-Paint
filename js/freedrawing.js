@@ -194,41 +194,76 @@ const freeDrawing = () => {
 };
 
 const freeDrawingToolboxContents = `
-<div style="display: inline-block; margin-left: 10px">
-    <div id="drawing-buttons" class="m-3">
-        <button id="drawing-mode" class="btn btn-info">Cancel dr mode</button>
-        <button id="clear-canvas" class="btn btn-info">Clear</button>
-    </div>
-
-    <div id="drawing-mode-options" class="m-3">
-        <label for="drawing-mode-selector">Mode:</label>
-        <select id="drawing-mode-selector">
-            <option>Pencil</option>
-            <option>Circle</option>
-            <option>Spray</option>
-            <option>Pattern</option>
-
-            <option>hline</option>
-            <option>vline</option>
-            <option>square</option>
-            <option>diamond</option>
-            <option>texture</option>
-        </select><br>
-
-        <label for="drawing-line-width">Line width:</label>
-        <span class="info">4</span><input type="range" value="4" min="0" max="150" id="drawing-line-width" style="width: 100px;"><br>
-
-        <label for="drawing-color">Line color:</label>
-        <input type="color" value="#56B0E4" id="drawing-color"><br>
-
-        <label for="drawing-shadow-color">Shadow color:</label>
-        <input type="color" value="#56B0E4" id="drawing-shadow-color"><br>
-
-        <label for="drawing-shadow-width">Shadow width:</label>
-        <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-width" style="width: 100px;"><br>
-
-        <label for="drawing-shadow-offset">Shadow offset:</label>
-        <span class="info">0</span><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset" style="width: 100px;"><br>
+<div id="drawing-buttons" class="my-3">
+    <button id="drawing-mode" class="btn btn-info">Cancel dr mode</button>
+    <button id="clear-canvas" class="btn btn-info">Clear</button>
+</div>
+<div id="drawing-mode-options" class="my-3">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-3"><label for="drawing-mode-selector">Mode:</label></div>
+            <div class="col">
+                <select id="drawing-mode-selector">
+                    <option>Pencil</option>
+                    <option>Circle</option>
+                    <option>Spray</option>
+                    <option>Pattern</option>
+                    <option>hline</option>
+                    <option>vline</option>
+                    <option>square</option>
+                    <option>diamond</option>
+                    <option>texture</option>
+                </select>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-3">Line</div>
+            <div class="col">
+                <label for="drawing-line-width">width:</label>
+            </div>
+            <div class="col">
+                <input type="range" value="4" min="0" max="150" id="drawing-line-width"">
+            </div>
+            <div class="col">
+                <span class="info">4</span>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-3"></div>
+            <div class="col">
+                <label for="drawing-color">color:</label>
+            </div>
+            <div class="col">
+                <input type="color" value="#56B0E4" id="drawing-color">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row my-2">
+            <div class="col-3">Shadow</div>
+            <div class="col">
+                <label for="drawing-shadow-color">color:</label>
+            </div>
+            <div class="col">
+                <input type="color" value="#56B0E4" id="drawing-shadow-color">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row my-2">
+            <div class="col-3"></div>
+            <div class="col"><label for="drawing-shadow-width">width:</label></div>
+            <div class="col">
+                <input type="range" value="0" min="0" max="50" id="drawing-shadow-width"">
+            </div>
+            <div class="col"><span class="info">0</span></div>
+        </div>
+        <div class="row my-2">
+            <div class="col-3"></div>
+            <div class="col"><label for="drawing-shadow-offset">offset:</label></div>
+            <div class="col">
+                <input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"">
+            </div>
+            <div class="col"><span class="info">0</span></div>
+        </div>
     </div>
 </div>
 `
