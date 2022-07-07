@@ -22,6 +22,12 @@ const shortcutKey = () => {
             return false;
         }
 
+        if (e.ctrlKey && e.key === 'a') {
+            e.preventDefault();
+            document.getElementById("select-all").click();
+            return false;
+        }
+
         if (e.key === 'Delete') {
             e.preventDefault();
             document.getElementById("remove").click();

@@ -168,16 +168,16 @@ const freeDrawing = () => {
     };
     drawingLineWidthEl.onchange = function () {
         canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
-        $('drawing-line-width-info').innerHTML = this.value;
+        $('drawing-line-width-info').innerHTML = ('000' + this.value).slice(-3);
     };
     drawingShadowWidth.onchange = function () {
         canvas.freeDrawingBrush.shadow.blur = parseInt(this.value, 10) || 0;
-        $('drawing-shadow-width-info').innerHTML = this.value;
+        $('drawing-shadow-width-info').innerHTML = ('000' + this.value).slice(-3);
     };
     drawingShadowOffset.onchange = function () {
         canvas.freeDrawingBrush.shadow.offsetX = parseInt(this.value, 10) || 0;
         canvas.freeDrawingBrush.shadow.offsetY = parseInt(this.value, 10) || 0;
-        $('drawing-shadow-offset-info').innerHTML = this.value;
+        $('drawing-shadow-offset-info').innerHTML = ('000' + this.value).slice(-3);
     };
 
     if (canvas.freeDrawingBrush) {
@@ -200,18 +200,39 @@ const freeDrawing = () => {
         Paste();
     }
 
+    document.getElementById("select-all").onclick = (e) => {
+        SelectAll();
+    }
+
     document.getElementById("remove").onclick = (e) => {
         Remove();
     }
 };
 
-// Remove
+// Select all objects
+function SelectAll() {
+    canvas.discardActiveObject();
+    var sel = new fabric.ActiveSelection(canvas.getObjects(), {
+        canvas: canvas,
+    });
+    canvas.setActiveObject(sel);
+    canvas.requestRenderAll();
+
+    if (canvas.isDrawingMode) {
+        document.getElementById("drawing-mode").click();
+    }
+}
+
+// Remove selected objects
 function Remove() {
     let activeObjects = canvas.getActiveObjects();
     if (activeObjects) {
         activeObjects.forEach(obj => {
             canvas.remove(obj);
         });
+
+        canvas.discardActiveObject();
+        canvas.requestRenderAll();
     }
 }
 
@@ -270,13 +291,14 @@ const freeDrawingToolboxContents = `
         <div class="row my-2">
             <div class="col-2">Parts</div>
             <div class="col">
-                <button id="clipboard-copy" class="btn btn-info">Copy</button>
-                <button id="clipboard-paste" class="btn btn-info">Paste</button>
+                <button id="clipboard-copy" class="btn btn-light">Copy</button>
+                <button id="clipboard-paste" class="btn btn-light">Paste</button>
             </div>
         </div>
         <div class="row my-2">
             <div class="col-2"></div>
             <div class="col">
+                <button id="select-all" class="btn btn-light">Select all</button>
                 <button id="remove" class="btn btn-danger">Remove</button>
             </div>
         </div>
@@ -306,10 +328,10 @@ const freeDrawingToolboxContents = `
                 <label for="drawing-line-width">width:</label>
             </div>
             <div class="col">
-                <input type="range" value="4" min="0" max="150" id="drawing-line-width"">
+                <input type="range" value="2" min="0" max="100" id="drawing-line-width"">
             </div>
             <div class="col">
-                <span id="drawing-line-width-info">4</span>
+                <span id="drawing-line-width-info">2</span>
             </div>
         </div>
         <div class="row my-2">
@@ -336,7 +358,7 @@ const freeDrawingToolboxContents = `
             <div class="col-3"></div>
             <div class="col"><label for="drawing-shadow-width">width:</label></div>
             <div class="col">
-                <input type="range" value="0" min="0" max="50" id="drawing-shadow-width"">
+                <input type="range" value="0" min="0" max="100" id="drawing-shadow-width"">
             </div>
             <div class="col"><span id="drawing-shadow-width-info">0</span></div>
         </div>
@@ -344,7 +366,7 @@ const freeDrawingToolboxContents = `
             <div class="col-3"></div>
             <div class="col"><label for="drawing-shadow-offset">offset:</label></div>
             <div class="col">
-                <input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"">
+                <input type="range" value="0" min="0" max="100" id="drawing-shadow-offset"">
             </div>
             <div class="col"><span id="drawing-shadow-offset-info">0</span></div>
         </div>
