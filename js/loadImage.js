@@ -46,11 +46,33 @@ const loadImage = () => {
         const w = c.getAttribute("width");
         const h = c.getAttribute("height");
 
-        const grid = 50;
+        // const grid = 50;
 
-        for (var i = 0; i < (w / grid); i++) {
-            canvas.add(new fabric.Line([i * grid, 0, i * grid, h], { type: 'line', stroke: '#ccc', selectable: false }));
-            canvas.add(new fabric.Line([0, i * grid, w, i * grid], { type: 'line', stroke: '#ccc', selectable: false }))
+        // for (var i = 0; i < (w / grid); i++) {
+        //     canvas.add(new fabric.Line([i * grid, 0, i * grid, h], { type: 'line', stroke: '#333', selectable: false }));
+        // }
+        // for (var j = 0; j < (h / grid); j++) {
+        //     canvas.add(new fabric.Line([0, j * grid, w, j * grid], { type: 'line', stroke: '#333', selectable: false }));
+        // }
+
+        const grid_s = 5;
+        const grid_l = 50;
+
+        for (var i = 0; i < (w / grid_s); i++) {
+            let x = i * grid_s;
+            if (x % grid_l == 0) {
+                canvas.add(new fabric.Line([x, 0, x, h], { type: 'line', stroke: '#ccc', selectable: false }));
+            } else {
+                canvas.add(new fabric.Line([x, 0, x, h], { type: 'line', stroke: '#eee', selectable: false }));
+            }
+        }
+        for (var j = 0; j < (h / grid_s); j++) {
+            let y = j * grid_s;
+            if (y % grid_l == 0) {
+                canvas.add(new fabric.Line([0, y, w, y], { type: 'line', stroke: '#ccc', selectable: false }));
+            } else {
+                canvas.add(new fabric.Line([0, y, w, y], { type: 'line', stroke: '#eee', selectable: false }));
+            }
         }
     }
 };
