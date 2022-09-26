@@ -196,8 +196,8 @@ const freeDrawing = () => {
         Copy();
     }
 
-    document.getElementById("clipboard-paste").onclick = (e) => {
-        Paste();
+    document.getElementById("clipboard-paste").onclick = async (e) => {
+        await Paste();
     }
 
     document.getElementById("select-all").onclick = (e) => {
@@ -248,7 +248,7 @@ function Copy() {
     }
 }
 
-function Paste() {
+async function Paste() {
     if (_clipboard) {
         _clipboard.clone(function (clonedObj) {
             canvas.discardActiveObject();
@@ -270,6 +270,22 @@ function Paste() {
             _clipboard.left += 10;
             canvas.setActiveObject(clonedObj);
             canvas.requestRenderAll();
+        });
+    } else {
+        const items = await navigator.clipboard.read();
+        items.forEach(async item => {
+            if (item.types.includes('image/png')) {
+                const blob = await item.getType('image/png');
+                const reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    let img = document.createElement('img');
+                    img.src = reader.result;
+                    fabric.Image.fromURL(img.src, function (img) {
+                        canvas.add(img);
+                    });
+                });
+                reader.readAsDataURL(blob);
+            }
         });
     }
 }
