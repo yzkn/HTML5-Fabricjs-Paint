@@ -1,0 +1,43 @@
+/* Copyright (c) 2022 YA-androidapp(https://github.com/YA-androidapp) All rights reserved. */
+
+body {
+    padding-top: 56px;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    transition: 0.3s all ease;
+}
+
+main>* {
+    flex-shrink: 0;
+    min-height: -webkit-fill-available;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+
+.nav-flush .nav-link {
+    border-radius: 0;
+}
+
+#sidebar {
+    width: 320px;
+
+    font-size: smaller;
+}
+
+input[type="range"] {
+    width: 60px;
+}
+
+select#textbox-fontname {
+    width: 100px;
+}
